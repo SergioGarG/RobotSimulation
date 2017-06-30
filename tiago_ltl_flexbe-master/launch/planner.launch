@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<launch>
+
+<!-- First test NOK : no feedback & wrong destination  
+  <node name="ltl_planner" pkg="tiago_ltl_flexbe" type="ltl_planner.py" args="$(arg plan)" />
+-->
+
+<!-- Second test  NOK : wrong destination
+  <arg name="my_plan" />
+  <node name="ltl_planner" pkg="tiago_ltl_flexbe" type="ltl_planner.py" output="screen">
+        <param name="plan" type="string" value="$(arg my_plan)"/>
+  </node>
+ -->
+
+<!-- Third test   NOK : wrong destination  
+  <node name="planner" pkg="tiago_ltl_flexbe" type="ltl_planner.py" output="screen">
+        <param name="robot_task" type="string" value="r1"/>
+  </node>
+-->
+
+<!-- Fourth test
+  <node name="ltl_planner" pkg="tiago_ltl_flexbe" type="ltl_planner.py" output="screen">
+    <rosparam>
+      plan: r1
+    </rosparam>
+  </node>
+-->
+
+<!-- Solution 1, not possible to send more than 1 goal
+  <node name="ltl_planner" pkg="tiago_ltl_flexbe" type="ltl_planner.py" output="screen">
+	<param name="my_plan" value="'(r2 && r3)'" type="str" />
+  </node>
+ -->
+
+ 
+  <!--<param name="plan" type="str" value="$(arg my_plan)"/> -->
+ <param name="plan" textfile="$(find tiago_ltl_flexbe)/obj.txt"  type="str" /> 
+  <node name="ltl_planner" pkg="tiago_ltl_flexbe" type="ltl_planner_sergio.py" output="screen" clear_params="true">
+ 
+  </node>
+
+
+</launch>
