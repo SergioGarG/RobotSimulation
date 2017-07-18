@@ -33,7 +33,7 @@ def norm2(pose1, pose2):
 
 def check_yaw(yaw_goal):
 	yaw_goal = yaw_goal%(2*PI)
-	print 'yaw_goal %s' %str(yaw_goal)
+	print 'check yaw START\nyaw_goal %s' %str(yaw_goal)
 	print 'yaw_robot %s' %str((robot_pose[1][2])%(2*PI))
 	reach_yaw_bound = 0.1*PI
 	VelPublisher = rospy.Publisher('mobile_base_controller/cmd_vel', Twist, queue_size = 10)
@@ -44,6 +44,7 @@ def check_yaw(yaw_goal):
 		rospy.sleep(0.1)
 	ang.angular.z = 0
 	VelPublisher.publish(ang)
+	print 'Check_yaw FINISHED'
 
 
 
@@ -53,7 +54,7 @@ def PoseCallback(posedata):
     # PoseWithCovarianceStamped data from amcl_pose
 	global robot_pose # [time, [x,y,yaw]]
 	global GoalPublisher
-	global current_goal
+	global pose_goal
 	header = posedata.header
 	pose = posedata.pose
 	if (not robot_pose[0]) or (header.stamp > robot_pose[0]):
@@ -65,7 +66,7 @@ def PoseCallback(posedata):
 		robot_pose[1] = [pose.pose.position.x, pose.pose.position.y, euler[2]] # in radians
 		print 'robot_pose (pose.x, pose.y, euler[2]) :\n %s' %str(robot_pose[1])
 		print 'GOAL STATE : %s' %str(GoalPublisher.get_state())
-		if ((norm2(robot_pose[1][0:2], current_goal[0:2]) < reach_xy_bound) and (GoalPublisher.get_state() == 1)): # 1 = ACTIVE
+		if ((norm2(robot_pose[1][0:2], pose_goal[0:2]) < reach_xy_bound) and (GoalPublisher.get_state() == 1)): # 1 = ACTIVE
 			GoalPublisher.cancel_goal()
 			print '-------------\nPOSITION REACHED'
 	
@@ -87,6 +88,7 @@ def SendGoal(goal , time_stamp):
     GoalMsg.pose.orientation.w = quaternion[3]
     goal = move_base_msgs.msg.MoveBaseGoal(target_pose = GoalMsg)
     GoalPublisher.send_goal(goal)
+    print 'GOAL %s SENT' %str(goal)
 
 
 def SendInitialPose(InitialPosePublisher, initial_pose, time_stamp):
@@ -109,8 +111,8 @@ def SendInitialPose(InitialPosePublisher, initial_pose, time_stamp):
 def planner(ts, init_pose, act, robot_task, robot_name='TIAGo'):
 	global robot_pose
 	robot_pose = [None, init_pose]
-	global current_goal
-	current_goal = init_pose
+	global pose_goal
+	pose_goal = init_pose
 	print 'Robot %s: ltl_planner started!' %(robot_name)
     #----------
     #publish to
@@ -138,24 +140,29 @@ def planner(ts, init_pose, act, robot_task, robot_name='TIAGo'):
 	while not rospy.is_shutdown():
 		try:
 			t = rospy.Time.now()-t0
-            print '----------Time: %.2f----------' %t.to_sec()
-			current_goal = planner.next_move
-			if isinstance(current_goal, str):
+			print '----------Time: %.2f----------' %t.to_sec()
+			new_goal = planner.next_move
+			print 'New current goal : %s' %str(new_goal)
+			if isinstance(new_goal, str):
 				print 'the robot next_move is an action, currently not implemented for %s' %robot_name
-				break
-			print 'current yaw : %s' %str(abs(robot_pose[1][2]))
-			print 'yaw goal : %s' %str(current_goal[2])
-			# move_base action server travels till (x,y) coordinates
-			SendGoal(current_goal, t)
-			GoalPublisher.wait_for_result()
-			print 'Action server over\n-------------\nCurrent Goal : %s' %str(current_goal)
-			print 'Current position : %s' %str(robot_pose[1])
-			# check_yaw function set the orientation 
-			check_yaw(current_goal[2])
-			
-			planner.find_next_move()
-			if current_goal == planner.next_move:
-				break
+				planner.find_next_move()
+				if pose_goal == planner.next_move:
+					print 'next move : %s\nAction break' %str(planner.next_move)
+					break
+			else:
+				pose_goal=new_goal
+				print 'current yaw : %s' %str(abs(robot_pose[1][2]))
+				# move_base action server travels till (x,y) coordinates
+				SendGoal(pose_goal, t)
+				GoalPublisher.wait_for_result()
+				print '\\move_base Action server over\n-------------\nCurrent Goal : %s' %str(pose_goal)
+				print 'Current position : %s' %str(robot_pose[1])
+				# check_yaw function set the orientation 
+				check_yaw(pose_goal[2])
+				planner.find_next_move()
+				if pose_goal == planner.next_move:
+					print 'next move : %s\nMove break' %str(planner.next_move)
+					break
 		except rospy.ROSInterruptException:
 			pass
 

@@ -8,7 +8,7 @@ def small_office():
 	# Displaying the interface in the terminal
 	print('------------------------------\nSelect an action :')
 	print('1. r1		4. r4\n2. r2		5. r5\n3. r3		6. r6')
-	print('7. r4 -> r5  8. tuto')
+	print('7. r4 -> r5  8. tuto\n9. sim')
 	print('q. Exit')
 	# Asking the scenario to execute
 	dest = raw_input()
@@ -19,9 +19,10 @@ def small_office():
         '3': '<>r3',
         '4': '<>r4',
         '5': '<>r5',
-        '6': '<>(r6)',
+        '6': '<>r6',
         '7': '<>((r4 && pick_from_floor) && <>(r5 && reach_max))',
         '8': '<>((r2 && pick_from_floor) && <>(r3 && reach_max))',
+        '9': '<>(sim && pick)',
         'q': 'none'
 	}.get(dest, 0)
     
@@ -29,7 +30,7 @@ def small_office():
 def tutorial_office():
 
 	print('------------------------------\nSelect an action :')
-	print('1. Charging 		4. Pick\n2. Pick a coke		5. Table\n3. Request')
+	print('1. Charging 		4. Pick\n2. Pick a coke		5. Table\n3. Request	6. Pick')
 	print('q. Exit')
 	dest = raw_input()
 	return {
@@ -38,6 +39,7 @@ def tutorial_office():
 		'3': '<>(person && <>charging)',
 		'4': '<>(coke && pick)',
 		'5': '<>coke',
+		'6': '<>pick',
 		'q': 'none'
 	}.get(dest, 0)
 	
@@ -49,7 +51,7 @@ def tabletop_cube():
 	print('q. Exit')
 	dest = raw_input()
 	return {
-		'1': '<>pick',
+		'1': '<>(aruco && pick)',
 		'2': '<>test',
 		'q': 'none'
 	}.get(dest, 0)

@@ -1,0 +1,55 @@
+Time = 7.917: Pick server starting
+Time = 11.249: Pick server finished
+Pick duration: 3.332
+Stopped by user
+Time = 8.017: Pick server starting
+Time = 29.017: Pick server finished
+Pick duration: 21.0
+Time = 13.657: Pick server starting
+Time = 38.395: Pick server finished
+Pick duration: 24.738
+Time = 0.0: Pick server starting
+Time = 24.559: Pick server finished
+Pick duration: 24.559
+Time = 0.0: Pick server starting
+Time = 24.844: Pick server finished
+Pick duration: 24.844
+Time = 0.0: Pick server starting
+Stopped by user
+Time = 0.0: Pick server starting
+Time = 24.733: Pick server finished
+Pick duration: 24.733
+Time = 0.0: Pick server starting
+Stopped by user
+Time = 8.025: Pick server starting
+Time = 29.076: Pick server finished
+Pick duration: 21.051
+Time = 8.359: Pick server starting
+Time = 33.153: Pick server finished
+Pick duration: 24.794
+Time = 0.0: Pick server starting
+Time = 24.768: Pick server finished
+Pick duration: 24.768
+Time = 0.0: Pick server starting
+Time = 24.627: Pick server finished
+Pick duration: 24.627
+Time = 0.001: Pick server starting
+Time = 24.706: Pick server finished
+Pick duration: 24.705
+Time = 8.064: Pick server starting
+Time = 28.986: Pick server finished
+Pick duration: 20.922
+Time = 5.81: Pick server starting
+Time = 30.439: Pick server finished
+Pick duration: 24.629
+Time = 0.0: Pick server starting
+Time = 24.654: Pick server finished
+Pick duration: 24.654
+Time = 0.0: Pick server starting
+Time = 24.623: Pick server finished
+Pick duration: 24.623
+Time = 11.491: Pick server starting
+Stopped by user
+Stopped by user
+Time = 0.0: Pick server starting
+Stopped by user

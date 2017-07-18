@@ -1,0 +1,196 @@
+
+
+----------------New test----------------
+New Cube position : [-1.639417205, -8.98012554379]
+Distance from edge : 0.110582795003
+Robot pose goal (x, y, Y) : (-2.13, -8.98012554379, 0.0)
+Time = 29.059. Pick server starting
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.624985274175, -7.27695937959]
+Distance from edge : 0.123040620405
+Robot pose goal (x, y, Y) : (-0.624985274175, -7.78, 1.57079632679)
+Time = 25.275. Pick server starting
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.939502602548, -8.78166885534]
+Distance from edge : 0.181668855345
+Robot pose goal (x, y, Y) : (-0.939502602548, -8.22, 4.71238898038)
+Time = 5.925. Pick server starting
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.689719190126, -10.7392769039]
+Distance from edge : 0.139276903896
+Robot pose goal (x, y, Y) : (-0.689719190126, -10.22, 4.71238898038)
+Time = 25.579. Pick server starting
+
+
+----------------New test----------------
+New Cube position : [-1.14012099185, -6.90191463679]
+Distance from edge : 0.301914636789
+Robot pose goal (x, y, Y) : (-1.14012099185, -6.22, 4.71238898038)
+Time = 18.673. Pick server starting
+
+
+----------------New test----------------
+New Cube position : [-0.730708193623, -8.791114339]
+Distance from edge : 0.191114338996
+Robot pose goal (x, y, Y) : (-0.730708193623, -8.22, 4.71238898038)
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.32479483694, -8.97794002449]
+Distance from edge : 0.377940024492
+Robot pose goal (x, y, Y) : (-1.32479483694, -8.22, 4.71238898038)
+
+
+----------------New test----------------
+New Cube position : [-0.540016693437, -7.15956938395]
+Distance from edge : 0.240430616048
+Robot pose goal (x, y, Y) : (-0.540016693437, -7.78, 1.57079632679)
+Time = 6.557. Pick server starting
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.723966772392, -11.2538540263]
+Distance from edge : 0.146145973718
+Robot pose goal (x, y, Y) : (-0.723966772392, -11.78, 1.57079632679)
+Time = 18.311. Pick server starting
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.13677977989, -9.14161904614]
+Distance from edge : 0.258380953864
+Robot pose goal (x, y, Y) : (-1.13677977989, -9.78, 1.57079632679)
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.622570523194, -11.2331342025]
+Distance from edge : 0.166865797548
+Robot pose goal (x, y, Y) : (-0.622570523194, -11.78, 1.57079632679)
+Time = 34.537. Pick server starting
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.55122219358, -11.282750044]
+Distance from edge : 0.117249956017
+Robot pose goal (x, y, Y) : (-1.55122219358, -11.78, 1.57079632679)
+Time = 35.235. Pick server starting
+
+
+----------------New test----------------
+New Cube position : [-0.643596653633, -6.95720558031]
+Distance from edge : 0.357205580305
+Robot pose goal (x, y, Y) : (-0.643596653633, -6.22, 4.71238898038)
+Time = 19.122. Pick server starting
+
+
+----------------New test----------------
+New Cube position : [-0.567893638365, -8.75880702834]
+Distance from edge : 0.158807028335
+Robot pose goal (x, y, Y) : (-0.567893638365, -8.22, 4.71238898038)
+Time = 17.025. Pick server starting
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.512540483559, -10.8812579163]
+Distance from edge : 0.262540483559
+Robot pose goal (x, y, Y) : (0.13, -10.8812579163, 3.14159265359)
+Time = 27.326. Pick server starting
+
+
+----------------New test----------------
+New Cube position : [-1.41048504166, -11.0946889968]
+Distance from edge : 0.305311003173
+Robot pose goal (x, y, Y) : (-1.41048504166, -11.78, 1.57079632679)
+Time = 13.036. Pick server starting
+Pick server finished. Duration: 37581000000Pick finished. Pick time = 37.592
+Mission duration : 50.63
+GRASP FAIL : hand empty
+----------------End test----------------Time = 0.202. Pick server starting
+Pick server finished. Duration: 6555000000Pick finished. Pick time = 6.589
+Mission duration : 6.831
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.476992452304, -6.9440167139]
+Distance from edge : 0.226992452304
+Robot pose goal (x, y, Y) : (0.13, -6.9440167139, 3.14159265359)
+Time = 19.564. Pick server starting
+Pick server finished. Duration: 41.949Pick finished. Pick time = 41.949
+Mission duration : 62.125
+GRASP FAIL : hand empty
+----------------End test----------------Time = 1.237. Pick server starting
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.07651408498, -10.8179239764]
+Distance from edge : 0.217923976394
+Robot pose goal (x, y, Y) : (-1.07651408498, -10.22, 4.71238898038)
+Time = 28.421. Pick server starting
+Pick server finished. Duration: 43.637
+Pick finished. Pick time = 43.655
+Mission duration : 72.484
+GRASP SUCCESSFUL
+----------------End test----------------Time = 0.2. Pick server starting
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.15778420073, -7.26626927412]
+Distance from edge : 0.133730725877
+Robot pose goal (x, y, Y) : (-1.15778420073, -7.78, 1.57079632679)
+Time = 26.258. Pick server starting
+
+
+----------------New test----------------
+New Cube position : [-1.38390854024, -7.27448868192]
+Distance from edge : 0.125511318078
+Robot pose goal (x, y, Y) : (-1.38390854024, -7.78, 1.57079632679)
+Time = 26.046. Pick server starting
+Pick server finished. Duration: 26.641
+Pick finished. Pick time = 26.646
+Mission duration : 52.693
+GRASP FAIL : hand empty
+----------------End test----------------Time = 0.509. Pick server starting
+Pick server finished. Duration: 8.696
+Pick finished. Pick time = 8.702
+Mission duration : 9.214
+GRASP FAIL : hand empty
+----------------End test----------------Time = 1.008. Pick server starting
+Aruco object not found. ABORTING
+Robot current position-1.37028466402, -7.76021874966, 1.71584751165)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.1318709856, -7.06448409341]
+Distance from edge : 0.335515906586
+Robot pose goal (x, y, Y) : (-1.1318709856, -7.78, 1.57079632679)
+Time = 0.0. Pick server starting
+Pick server finished. Duration: 8.887
+Pick finished. Pick time = 8.909
+Mission duration : 8.912
+GRASP FAIL : hand empty
+----------------End test----------------Time = 0.0. Pick server starting
+Pick server finished. Duration: 8.163
+Pick finished. Pick time = 8.175
+Mission duration : 8.184
+GRASP FAIL : hand empty
+----------------End test----------------Time = 0.0. Pick server starting
+Aruco object not found. ABORTING
+Robot current position0.00164743469718, -0.00534767145305, -0.00536919417783)
+----------------End test----------------

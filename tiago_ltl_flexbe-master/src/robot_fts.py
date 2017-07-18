@@ -1,15 +1,17 @@
+# export PYTHONPATH=$PYTHONPATH:/to/your/P_MAS_TG
 from ltl_tools.ts import MotionFts, ActionModel, MotActModel
 from ltl_tools.planner import ltl_planner
+#from pick_test import mission_pose
 
-# export PYTHONPATH=$PYTHONPATH:/to/your/P_MAS_TG
-
-
+import rospy
 import time
 
+###########TEST#############
 
 ##############################
+##############################
 # motion FTS
-ap = {'r1', 'r2', 'r3', 'r4', 'r5', 'r6', }
+ap = {'r1', 'r2', 'r3', 'r4', 'r5', 'r6', 'sim'}
 
 regions = {   #Small_office
 			  (0.57, -10.01, 0.95): set(['r1',]),
@@ -21,17 +23,19 @@ regions = {   #Small_office
               #Tutorial_office
               (-4.15, 9.20, 0.00): set(['charging',]),
               (-2.51, 6.20, 2.50): set(['person',]),
-              (1.63, -2.84, 0.00): set(['coke',]),
+              (1.54, -2.80, 0.00): set(['coke',]),
               #tabletop_cube
-              (0.00, 0.00, 0.00): set(['acuro',]),
+              (0.00, 0.00, 0.00): set(['aruco',]),
               (-1.00, -1.00, 0.00): set(['test',]),
-              
+              #test
+              #mission_pose: set(['sim',]),
 }
 
-init_pose = (0.57, -10.01, 0.95)
-robot_motion = MotionFts(regions, ap, 'office' )
-robot_motion.set_initial((0.57, -10.01, 0.95))
-robot_motion.add_full_edges(unit_cost = 0.1)
+
+#init_pose = (0.0,0.0,0.0)
+#robot_motion = MotionFts(regions, ap, 'office' )
+#robot_motion.set_initial(init_pose)
+#robot_motion.add_full_edges(unit_cost = 0.1)
 
 
 ##############################
@@ -53,7 +57,7 @@ action = {'pick_from_floor': (10, '1', set(['pick_from_floor',])),
 
 robot_action = ActionModel(action)
 
-robot_model = [robot_motion, init_pose, robot_action]
+#robot_model = [robot_motion, init_pose, robot_action]
 ##############################
 # complete robot model
 # robot_full_model = MotActModel(robot_motion, robot_action)

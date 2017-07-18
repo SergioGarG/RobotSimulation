@@ -1,0 +1,502 @@
+----------------New test----------------
+New Cube position : [-1.24440196622, -6.75063343328]
+Distance from table edge : 0.150633433283
+Initial position : (0.0014816184782073547, -0.004745734575004496, -0.0006544685194463104)
+Robot pose goal (x, y, Y) : (-1.24440196622, -6.22, 4.71238898038)
+
+----------------New test----------------
+New Cube position : [-0.68522096379, -11.0974100928]
+Distance from table edge : 0.302589907242
+Initial position : (0.0014816184782073547, -0.004745734575004496, -0.0006544685194463104)
+Robot pose goal (x, y, Y) : (-0.68522096379, -11.78, 1.57079632679)
+Time = 32.379: Pick server starting
+Time = 79.278: Pick server finished
+Duration: 46.899
+Mission duration : 79.306
+Aruco object not found. ABORTING
+Robot current position : (-0.685448863105, -11.765343055, 1.53719933421)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.57671296946, -7.27088271892]
+Distance from table edge : 0.129117281083
+Initial position : (-0.68544886310538, -11.765343054969989, 1.5371993342051293)
+Robot pose goal (x, y, Y) : (-1.57671296946, -7.78, 1.57079632679)
+Time = 3.782: Pick server starting
+Aruco object not found. ABORTING
+Robot current position : (-0.671769108449, -11.784404748, 1.58395018363)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.38775074878, -10.8417516079]
+Distance from table edge : 0.241751607909
+Initial position : (-0.6717691084492675, -11.784404747955817, 1.583950183633601)
+Robot pose goal (x, y, Y) : (-1.38775074878, -10.22, 4.71238898038)
+Time = 0.0: Pick server starting
+Aruco object not found. ABORTING
+Robot current position : (-0.66298095514, -11.8355000356, 1.12808092971)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.410567463825, -9.17514194631]
+Distance from table edge : 0.160567463825
+Initial position : (0.0006917821236874278, -0.0044881423935656415, 0.0004895280540295364)
+Robot pose goal (x, y, Y) : (0.13, -9.17514194631, 3.14159265359)
+Time = 23.634: Pick server starting
+Time = 68.167: Pick server finished
+Pick duration: 44.533
+Mission duration : 68.197
+GRASP SUCCESSFUL
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.882620480571, -6.98779890801]
+Distance from table edge : 0.387798908012
+Initial position : (0.1359180953083572, -9.153999886384508, -3.098956080158943)
+Robot pose goal (x, y, Y) : (-0.882620480571, -6.22, 4.71238898038)
+Time = 6.907: Pick server starting
+Aruco object not found. ABORTING
+Robot current position : (0.130982143398, -9.11975824361, -1.55825889087)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.665763652627, -7.1692359541]
+Distance from table edge : 0.230764045901
+Initial position : (0.0006593544692800875, -0.004363335163241926, 0.00040638166680530876)
+Robot pose goal (x, y, Y) : (-0.665763652627, -7.78, 1.57079632679)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (0.743386960422, -1.63654620606, -1.09216757608)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.56876651278, -10.8281867066]
+Distance from table edge : 0.181233487217
+Initial position : (-0.7052814060322787, -7.760024220801, 1.3757025940312473)
+Robot pose goal (x, y, Y) : (-2.13, -10.8281867066, 0.0)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-1.04329385689, -8.49440939425, -0.43870278619)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.19803477666, -11.1014252233]
+Distance from table edge : 0.298574776714
+Initial position : (-1.0399383515295832, -8.488480266576133, -0.2564309159584071)
+Robot pose goal (x, y, Y) : (-1.19803477666, -11.78, 1.57079632679)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-1.03242981998, -8.46784456187, -1.13584815336)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.41548513838, -7.10955438992]
+Distance from table edge : 0.16548513838
+Initial position : (-1.0111587504466402, -8.491445817002713, -1.0137750324281878)
+Robot pose goal (x, y, Y) : (0.13, -7.10955438992, 3.14159265359)
+Time = 0.0: Pick server starting
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-0.843520615766, -8.66547845829, -0.704752375893)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.614264039353, -6.92903069873]
+Distance from table edge : 0.329030698726
+Initial position : (-0.8435206157660176, -8.665478458291496, -0.7047523758934668)
+Robot pose goal (x, y, Y) : (-0.614264039353, -6.22, 4.71238898038)
+Time = 5.087: Pick server starting
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-1.00068960361, -8.44950562274, -1.61986533277)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.0457227179, -6.75031097254]
+Distance from table edge : 0.150310972539
+Initial position : (0.001427635933675616, -0.005350414611962569, 0.0002147281456618491)
+Robot pose goal (x, y, Y) : (-1.0457227179, -6.22, 4.71238898038)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (0.823236165477, -1.72520241523, -1.0988609887)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.561429559309, -11.2462736222]
+Distance from table edge : 0.153726377788
+Initial position : (0.002065438171488727, -0.005618153630571898, 0.0005044038040323327)
+Robot pose goal (x, y, Y) : (-0.561429559309, -11.78, 1.57079632679)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (1.18449595194, -2.52126838272, -1.20675630176)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.764258389823, -7.19832298424]
+Distance from table edge : 0.201677015762
+Initial position : (0.0005814791092852066, -0.00521698745441496, 0.0011941465861988441)
+Robot pose goal (x, y, Y) : (-0.764258389823, -7.78, 1.57079632679)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (0.323963199734, -0.773509744266, -1.17739389165)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.58571040814, -9.15800501176]
+Distance from table edge : 0.16428959186
+Initial position : (0.0006060390480343593, -0.00474815794831998, 0.0009531069488229124)
+Robot pose goal (x, y, Y) : (-2.13, -9.15800501176, 0.0)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (0.0985490391346, -0.165590697727, -1.18481593634)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.47811752805, -11.2788215199]
+Distance from table edge : 0.121178480105
+Initial position : (-1.9614341113505869, -6.202644652315709, -2.0652490009490743)
+Robot pose goal (x, y, Y) : (-1.47811752805, -11.78, 1.57079632679)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-2.20921181331, -6.69296381891, 2.56345435618)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.97564311285, -8.76821619815]
+Distance from table edge : 0.168216198145
+Initial position : (-2.2285164914146045, -6.670498168974186, 2.453880516885747)
+Robot pose goal (x, y, Y) : (-0.97564311285, -8.22, 4.71238898038)
+Time = 0.0: Pick server starting
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-2.22851649141, -6.67049816897, 2.45388051689)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.405861149225, -11.0161367625]
+Distance from table edge : 0.155861149225
+Initial position : (-2.2285164914146045, -6.670498168974186, 2.453880516885747)
+Robot pose goal (x, y, Y) : (0.13, -11.0161367625, 3.14159265359)
+Time = 2.85: Pick server starting
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-2.33987337389, -6.65379542175, -3.0956510466)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.992351609553, -9.1064483195]
+Distance from table edge : 0.293551680496
+Initial position : (-2.3398733738863715, -6.653795421754176, -3.0956510466008758)
+Robot pose goal (x, y, Y) : (-0.992351609553, -9.78, 1.57079632679)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-2.38199157189, -6.61602459373, -2.22807165402)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.954466540523, -7.25669606947]
+Distance from table edge : 0.143303930534
+Initial position : (-0.00027608040899876053, -0.004078830558016499, 8.719712909648028e-05)
+Robot pose goal (x, y, Y) : (-0.954466540523, -7.78, 1.57079632679)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (0.314439096149, -0.790625098579, -1.1310496212)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.980937425467, -10.7441315277]
+Distance from table edge : 0.144131527747
+Initial position : (-0.9968599291131117, -7.819999213900868, 2.5770816121129996)
+Robot pose goal (x, y, Y) : (-0.980937425467, -10.22, 4.71238898038)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-0.974136970113, -7.75111177445, -0.241476261684)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.894606120671, -7.1522958002]
+Distance from table edge : 0.247704199804
+Initial position : (0.0005729869605920147, -0.004361370800272835, 0.00047983181863472143)
+Robot pose goal (x, y, Y) : (-0.894606120671, -7.78, 1.57079632679)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (0.0014094082245, -0.00131179771168, -0.636765518071)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.653652486016, -6.79773232908]
+Distance from table edge : 0.19773232908
+Initial position : (0.6014273891354855, -3.9848428126679982, -2.002019625813252)
+Robot pose goal (x, y, Y) : (-0.653652486016, -6.22, 4.71238898038)
+Time = 6.602: Pick server starting
+Time = 42.621: Pick server finished
+Pick duration: 36.019
+Mission duration : 42.643
+GRASP SUCCESSFUL
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.350999772525, -11.2658083529]
+Distance from table edge : 0.100999772525
+Initial position : (-0.6137036257316446, -6.187562994156577, -1.5936235344725334)
+Robot pose goal (x, y, Y) : (0.13, -11.2658083529, 3.14159265359)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-0.61625823183, -6.21916292032, -1.51102471606)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.28350427607, -8.95349052768]
+Distance from table edge : 0.35349052768
+Initial position : (0.0004219461519950462, -0.004162783766194563, -0.00023993017279320768)
+Robot pose goal (x, y, Y) : (-1.28350427607, -8.22, 4.71238898038)
+Time = 26.03: Pick server starting
+Time = 83.807: Pick server finished
+Pick duration: 57.777
+Mission duration : 83.825
+GRASP SUCCESSFUL
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.578797119559, -8.86815300811]
+Distance from table edge : 0.268153008113
+Initial position : (-1.2509384683515405, -8.20033331307224, -1.5469411675778297)
+Robot pose goal (x, y, Y) : (-0.578797119559, -8.22, 4.71238898038)
+Time = 0.0: Pick server starting
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-1.25093846835, -8.20033331307, -1.54694116758)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.47751712719, -7.1424163404]
+Distance from table edge : 0.257583659601
+Initial position : (-1.2509384683515405, -8.20033331307224, -1.5469411675778297)
+Robot pose goal (x, y, Y) : (-1.47751712719, -7.78, 1.57079632679)
+Time = 0.0: Pick server starting
+Time = 2.959: Pick server finished
+Pick duration: 2.959
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-1.47143934919, -7.80286095834, 2.28835817327)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.17775138542, -9.0818661421]
+Distance from table edge : 0.318133857899
+Initial position : (0.0015584556369666737, -0.005521067263354404, -0.00047583616522415043)
+Robot pose goal (x, y, Y) : (-1.17775138542, -9.78, 1.57079632679)
+Time = 30.825: Pick server starting
+Time = 76.899: Pick server finished
+Pick duration: 46.074
+Mission duration : 76.923
+GRASP SUCCESSFUL
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.8163004596, -8.89961624228]
+Distance from table edge : 0.29961624228
+Initial position : (-1.1374412205909512, -9.781645634132085, 1.5940180405815154)
+Robot pose goal (x, y, Y) : (-0.8163004596, -8.22, 4.71238898038)
+Time = 0.0: Pick server starting
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-1.13744122059, -9.78164563413, 1.59401804058)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.621357736548, -9.03258850151]
+Distance from table edge : 0.36741149849
+Initial position : (-1.1374412205909512, -9.781645634132085, 1.5940180405815154)
+Robot pose goal (x, y, Y) : (-0.621357736548, -9.78, 1.57079632679)
+Time = 0.0: Pick server starting
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-1.13744122059, -9.78164563413, 1.59401804058)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.754628261284, -10.849852426]
+Distance from table edge : 0.249852426019
+Initial position : (-1.1374412205909512, -9.781645634132085, 1.5940180405815154)
+Robot pose goal (x, y, Y) : (-0.754628261284, -10.22, 4.71238898038)
+Time = 0.0: Pick server starting
+Time = 3.073: Pick server finished
+Pick duration: 3.073
+Mission duration : 9.322
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.441138871651, -7.2294808034]
+Distance from table edge : 0.170519196603
+Initial position : (-0.9325450782666818, -9.971742803305826, -1.5226087252533484)
+Robot pose goal (x, y, Y) : (-0.441138871651, -7.78, 1.57079632679)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-1.531124243, -9.89222922222, 2.02465601433)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.805679909494, -11.2327900674]
+Distance from table edge : 0.167209932637
+Initial position : (0.0004555718374302178, -0.004528156434925808, 0.0005315163179588127)
+Robot pose goal (x, y, Y) : (-0.805679909494, -11.78, 1.57079632679)
+Time = 34.636: Pick server starting
+Time = 73.207: Pick server finished
+Pick duration: 38.571
+Mission duration : 73.215
+GRASP SUCCESSFUL
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.20766013588, -7.01409514976]
+Distance from table edge : 0.385904850238
+Initial position : (-0.7803743981899548, -11.772806472515331, 1.5909589042640875)
+Robot pose goal (x, y, Y) : (-1.20766013588, -7.78, 1.57079632679)
+Time = 3.872: Pick server starting
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-1.03585560656, -11.1555455164, 1.36561656911)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.923579415981, -7.18206356536]
+Distance from table edge : 0.217936434641
+Initial position : (0.0004649617300273443, -0.004980378998004582, -0.0005403455342923964)
+Robot pose goal (x, y, Y) : (-0.923579415981, -7.78, 1.57079632679)
+Time = 25.232: Pick server starting
+Time = 61.757: Pick server finished
+Pick duration: 36.525
+Mission duration : 61.771
+GRASP SUCCESSFUL
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.13870682514, -7.20534609852]
+Distance from table edge : 0.194653901479
+Initial position : (-0.9059991921542628, -7.780358963894098, 1.4894585482177511)
+Robot pose goal (x, y, Y) : (-1.13870682514, -7.78, 1.57079632679)
+Time = 0.0: Pick server starting
+Time = 20.621: Pick server finished
+Pick duration: 20.621
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-0.903196315789, -7.77282348525, 2.31517203552)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.40555065084, -6.87595501348]
+Distance from table edge : 0.275955013481
+Initial position : (0.0006894735021201697, -0.004661522974950312, 0.000929117326869398)
+Robot pose goal (x, y, Y) : (-1.40555065084, -6.22, 4.71238898038)
+Time = 18.332: Pick server starting
+Time = 54.487: Pick server finished
+Pick duration: 36.155
+Mission duration : 54.496
+GRASP SUCCESSFUL
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.59703444207, -6.9428568444]
+Distance from table edge : 0.152965557931
+Initial position : (-0.001282247547880474, -0.0035440205737492514, -0.008131203972704577)
+Robot pose goal (x, y, Y) : (-2.13, -6.9428568444, 0.0)
+Time = 0.0: Pick server starting
+Time = 3.494: Pick server finished
+Pick duration: 3.494
+Aruco object not found. ABORTING
+Robot current position : (-0.00128224754788, -0.00354402057375, -0.0081312039727)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.870358001931, -6.87777130657]
+Distance from table edge : 0.277771306565
+Initial position : (-0.001282247547880474, -0.0035440205737492514, -0.008131203972704577)
+Robot pose goal (x, y, Y) : (-0.870358001931, -6.22, 4.71238898038)
+Time = 0.0: Pick server starting
+Time = 20.997: Pick server finished
+Pick duration: 20.997
+Aruco object not found. ABORTING
+Robot current position : (-0.00128224754788, -0.00354402057375, -0.0081312039727)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.06777372091, -6.7230532071]
+Distance from table edge : 0.123053207099
+Initial position : (0.0006917821236874278, -0.0044881423935656415, 0.0004895280540295364)
+Robot pose goal (x, y, Y) : (-1.06777372091, -6.22, 4.71238898038)
+Time = 0.0: Pick server starting
+Time = 3.27: Pick server finished
+Pick duration: 3.27
+Aruco object not found. ABORTING
+Robot current position : (0.000691782123687, -0.00448814239357, 0.00048952805403)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.17951180512, -6.9837446656]
+Distance from table edge : 0.383744665597
+Initial position : (0.0006917821236874278, -0.0044881423935656415, 0.0004895280540295364)
+Robot pose goal (x, y, Y) : (-1.17951180512, -6.22, 4.71238898038)
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (1.22546671591, -2.81729781527, -1.2571392233)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.926029477932, -7.27907086116]
+Distance from table edge : 0.120929138836
+Initial position : (0.0006753952211465082, -0.004950720231704222, 0.0011517975548667556)
+Robot pose goal (x, y, Y) : (-0.926029477932, -7.78, 1.57079632679)
+Time = 0.001: Pick server starting
+Time = 2.982: Pick server finished
+Pick duration: 2.981
+Aruco object not found. ABORTING
+Robot current position : (0.000675395221147, -0.0049507202317, 0.00115179755487)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.383505376323, -6.89445814228]
+Distance from table edge : 0.133505376323
+Initial position : (0.0006753952211465082, -0.004950720231704222, 0.0011517975548667556)
+Robot pose goal (x, y, Y) : (0.13, -6.89445814228, 3.14159265359)
+Time = 21.018: Pick server starting
+Time = 47.351: Pick server finished
+Pick duration: 26.333
+Mission duration : 47.398
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.08890197064, -7.02228920217]
+Distance from table edge : 0.377710797826
+Initial position : (0.13102360729317952, -6.8733081503669835, 3.0841452924634245)
+Robot pose goal (x, y, Y) : (-1.08890197064, -7.78, 1.57079632679)
+Time = 10.738: Pick server starting
+Time = 50.761: Pick server finished
+Pick duration: 40.023
+Mission duration : 50.791
+GRASP SUCCESSFUL
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-1.46739860418, -7.00053250189]
+Distance from table edge : 0.282601395825
+Initial position : (-1.0786251133824274, -7.760080726891128, 1.530602156528975)
+Robot pose goal (x, y, Y) : (-2.13, -7.00053250189, 0.0)
+Time = 0.0: Pick server starting
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-1.07862511338, -7.76008072689, 1.53060215653)
+----------------End test----------------
+
+----------------New test----------------
+New Cube position : [-0.620398865576, -8.86958503214]
+Distance from table edge : 0.269585032136
+Initial position : (-1.0786251133824274, -7.760080726891128, 1.530602156528975)
+Robot pose goal (x, y, Y) : (-0.620398865576, -8.22, 4.71238898038)
+Time = 0.0: Pick server starting
+Stopped by user
+Aruco object not found. ABORTING
+Robot current position : (-1.07862511338, -7.76008072689, 1.53060215653)
+----------------End test----------------

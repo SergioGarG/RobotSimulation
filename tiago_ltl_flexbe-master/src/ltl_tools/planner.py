@@ -18,7 +18,7 @@ class ltl_planner(object):
 		self.com_log = []
 		# record [(time, no_messages)]
 
-	def optimal(self, beta=5, style='static'):
+	def optimal(self, beta=10, style='static'):
 		self.beta = beta
 		if style == 'static':
 			# full graph construction
