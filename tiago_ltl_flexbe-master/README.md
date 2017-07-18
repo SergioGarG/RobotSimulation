@@ -12,6 +12,22 @@ This package is based on the following three sources:
 
 * FlexBE framework: http://wiki.ros.org/flexbe
 
+
+## Utilization
+
++ launch gazebo with the small_office world : 
+
+```
+roslaunch tiago_ltl_flexbe pick_test.launch rviz:=false world:=small_office
+
+```
++ Send the robot the mission to pick a object generated randomly on a table :
+The name of the data recording file is passed as an argument 
+```
+./pick_test.py data
+```
+data.txt is stored in the pick_test folder
+
 ## Usage 
 
 - The robot model as finite transition system (FTS) is specified in [\[robot_fts.py\]](https://github.com/MengGuo/tiago_ltl_flexbe/blob/master/src/robot_fts.py):
@@ -23,14 +39,6 @@ robot_model = [robot_motion, init_pose, robot_action]
 
    where the robot motion and action abstractions are given as [FTS models](https://github.com/MengGuo/tiago_ltl_flexbe/blob/master/src/ltl_tools/ts.py). 
 
-
-- While calling the [\[ltl_planner.py\]](https://github.com/MengGuo/tiago_ltl_flexbe/blob/master/src/ltl_planner.py), a complex navigation task specified as LTL formulas can be fed directly:
-
-```python
-# python ltl_planner.py '<> (r2 && <>r3)'
-# python ltl_planner.py '([]<> r2) && ([]<> r3) && ([]<> r1)'
-python ltl_planner.py '<> r2 && ([]<> r3) && ([]<> r1)'
-```
 
   <p align="center">  
   <img src="https://github.com/MengGuo/tiago_ltl_flexbe/blob/master/src/figures/tiago_ltl_flexbe.png" width="800"/>
