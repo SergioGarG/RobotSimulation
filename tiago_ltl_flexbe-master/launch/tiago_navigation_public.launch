@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="robot"  default="steel"/>
+  <arg name="map"    default="$(env HOME)/.pal/tiago_maps/config"/>
+  <arg name="rviz"   default="true"/>
+  <arg name="world"  default="custom"/>
+  <arg name="gzpose" default="-x 0.0 -y 0.0 -z 0.0 -R 0.0 -P 0.0 -Y 0.0"/> <!-- -x 1.526 -y -2.775 -->
+  <arg name="moveit_cam" default="false"/>
+  
+  <include file="$(find tiago_ltl_flexbe)/launch/tiago_navigation.launch">
+	  <arg name="world"			 value="$(arg world)"/>
+      <arg name="robot"          value="$(arg robot)"/>
+      <arg name="global_planner" value="navfn"/>
+      <arg name="local_planner"  value="eband"/>
+      <arg name="localization"   value="amcl"/>
+      <arg name="public_sim"     value="True"/>
+      <arg name="gzpose" 		 value="$(arg gzpose)"/> <!--<arg name="gzpose"         value="-x 0.78 -y -11.1 -z -0.003 -R 0.0 -P 0.0 -Y 70.0"/> -->
+      <arg name="map" 			 value="$(arg map)"/>
+      <arg name="rviz"			 value="$(arg rviz)"/>
+      <arg name="moveit_cam" 	 value="$(arg moveit_cam)"/>
+  </include>
+
+</launch>

@@ -15,7 +15,7 @@
 -->
   <param name="simulation_ready" value='False'/>
   
-  <include file="$(find tiago_2dnav_gazebo)/launch/tiago_navigation_public.launch">
+  <include file="$(find tiago_ltl_flexbe)/launch/tiago_navigation_public.launch">
 	<arg name="robot"	value="$(arg robot)"/>
 	<arg name="world"	value="$(arg world)"/>
 	<arg name="rviz"	value="$(arg rviz)"/>
