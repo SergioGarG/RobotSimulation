@@ -19,14 +19,13 @@ This package is based on the following three sources:
 
 ```
 roslaunch tiago_ltl_flexbe pick_test.launch rviz:=false world:=small_office
+```
++ Send the robot the mission to pick an object generated randomly on a table :
 
 ```
-+ Send the robot the mission to pick a object generated randomly on a table :
-The name of the data recording file is passed as an argument 
+./pick_test.py example
 ```
-./pick_test.py data
-```
-data.txt is stored in the pick_test folder
+The name of the data recording file is passed as an argument and example.txt is stored in the pick_test folder
 
 ## Usage 
 
