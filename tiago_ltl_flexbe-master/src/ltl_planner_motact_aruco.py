@@ -85,24 +85,6 @@ def SendGoal(goal , time_stamp, GoalPublisher):
 
 
 
-def SendInitialPose(InitialPosePublisher, initial_pose, time_stamp):
-    # goal: [x, y, yaw]
-    InitialPoseMsg = PoseWithCovarianceStamped()
-    #InitialPoseMsg.header.seq = 0
-    InitialPoseMsg.header.stamp = time_stamp
-    InitialPoseMsg.header.frame_id = 'map'
-    InitialPoseMsg.pose.pose.position.x = initial_pose[0]
-    InitialPoseMsg.pose.pose.position.y = initial_pose[1]
-    #InitialPoseMsg.pose.position.z = 0.0
-    quaternion = quaternion_from_euler(0, 0, initial_pose[2])
-    InitialPoseMsg.pose.pose.orientation.x = quaternion[0]
-    InitialPoseMsg.pose.pose.orientation.y = quaternion[1]
-    InitialPoseMsg.pose.pose.orientation.z = quaternion[2]
-    InitialPoseMsg.pose.pose.orientation.w = quaternion[3]
-    #data.write("Initial pose : "+str(
-    InitialPosePublisher.publish(InitialPoseMsg)   
-     
-
 def init_pose():
 	try:
 		posedata = rospy.wait_for_message('/amcl_pose',  PoseWithCovarianceStamped, timeout=2)
@@ -129,7 +111,6 @@ def planner(ts, init_pose, act, robot_task, robot_name='TIAGo'):
     #----------
     #publish to
     #----------
-
 	GoalPublisher = actionlib.SimpleActionClient('move_base', move_base_msgs.msg.MoveBaseAction)
 	GoalPublisher.wait_for_server()
     ####### robot information
@@ -145,13 +126,11 @@ def planner(ts, init_pose, act, robot_task, robot_name='TIAGo'):
 	
 	t0 = rospy.Time.now()
 
-	print 't0 = %.2f' %t0.to_sec()
 	while not rospy.is_shutdown():
 		try:
 			t = rospy.Time.now()-t0
-			print '----------Time: %.2f----------' %t.to_sec()
 			new_goal = planner.next_move
-			print 'NEW GOAL: %s' %str(new_goal)
+			rospy.loginfo("NEW GOAL: "+str(new_goal))
 			if isinstance(new_goal, str):
 				tp = rospy.Time.now()
 				data = open("../pick_test/"+str(rospy.get_param('test_name'))+".txt", "a")
@@ -173,40 +152,21 @@ def planner(ts, init_pose, act, robot_task, robot_name='TIAGo'):
 					aruco_detect = rospy.wait_for_message('/detected_aruco_pose', PoseStamped, timeout=0.5)
 				except rospy.ROSException:
 					return
-				# Octomap setup
-				#client = actionlib.SimpleActionClient('/play_motion', PlayMotionAction) 
-				#client.wait_for_server()
-				#goal = PlayMotionGoal()
-				#goal.motion_name = 'head_look_around'
-				#goal.skip_planning = False
-				#goal.priority = 0  # Optional
-				#print 'Sending actionlib goal with motion: %s' %str(goal.motion_name)
-				#client.send_goal(goal)
-				#print 'Waiting for result...'
-				#action_ok = client.wait_for_result(rospy.Duration(30.0))
-				#state = client.get_state()
-				# Come back to default position
-				#goal.motion_name = 'home'
-				#print 'Sending actionlib goal with motion: %s' %str(goal.motion_name)
-				#client.send_goal(goal)
-				#print 'Waiting for result...'
-				#action_ok = client.wait_for_result(rospy.Duration(30.0))
-				#state = client.get_state()
 				planner.find_next_move()
-				print 'action : next move : %s' %str(planner.next_move)
 			else:
 				pose_goal = new_goal
 				# move_base action server travels till (x,y) coordinates
 				SendGoal(pose_goal, t, GoalPublisher)
-				rospy.loginfo("Position goal "+str(pose_goal)+" sent to Robot "+str(robot_name))
 				GoalPublisher.wait_for_result()
 				# the check_yaw function sets the orientation 
 				rospy.loginfo("Start check_yaw")
 				check_yaw(pose_goal[2])
 				rospy.loginfo("Current robot position : "+str(robot_pose[1]))
+				data = open("../pick_test/"+str(rospy.get_param('test_name'))+".txt", "a")
+				data.write("Current robot position : "+str(robot_pose[1])+"\n")
+				data.close()
 				rospy.loginfo("Goal "+str(pose_goal)+" reached")
 				planner.find_next_move()
-				print 'move : next move : %s' %str(planner.next_move)
 			if pose_goal == planner.next_move:
 				data = open("../pick_test/"+str(rospy.get_param('test_name'))+".txt", "a")
 				data.write("Mission duration : "+str((rospy.Time.now()-t0).to_sec())+"\n")

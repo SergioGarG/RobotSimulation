@@ -40,12 +40,11 @@ class ltl_planner(object):
                         return 
 		if isinstance(self.run.pre_plan[1], str):
 			init_pose = (rospy.get_param('amcl_initial_pose_x'), rospy.get_param('amcl_initial_pose_y'), rospy.get_param('amcl_initial_pose_a'))
-			print 'init_pose %s' %str(init_pose)
 			self.run.line = [(init_pose, 'None')]+self.run.line
 			print [n for n in self.run.line]
 			self.run.pre_plan = [init_pose]+self.run.pre_plan
 			print [n for n in self.run.pre_plan]
-			print '\nPlan corrected\n'
+			rospy.logwarn("Prefix plan corrected")
 		#print '\n'
                 print '------------------------------'
                 print 'the prefix of plan **states**:'

@@ -6,16 +6,16 @@ from moveit_msgs.msg import PickupActionFeedback
 from control_msgs.msg import JointTrajectoryControllerState, FollowJointTrajectoryActionGoal
 from gazebo_msgs.msg import ModelState, ModelStates
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
-from geometry_msgs.msg import PoseWithCovarianceStamped
 from gazebo_msgs.srv import SetModelState
 from math import pi
-
+from datetime import datetime
 
 
 def mission_gen():
 	global amcl_init_pose 
 	data = open("../pick_test/"+str(rospy.get_param('test_name'))+".txt", "a")
 	data.write("\n----------------New test----------------\n")
+	data.write(str(datetime.now())+"\n")
 	SetPose = rospy.ServiceProxy('/gazebo/set_model_state', SetModelState)
 	aruco_range_x=[-1.75,-0.25] 
 	aruco_range_y=[[-11.4,-10.6], [-9.4,-8.6], [-7.4,-6.6]]
@@ -24,12 +24,7 @@ def mission_gen():
 	x_aruco=random.uniform(aruco_range_x[0]+0.1, aruco_range_x[1]-0.1)
 	y_aruco=random.uniform(aruco_range_y[i][0]+0.1, aruco_range_y[i][1]-0.1)
 	(x_chair, y_chair)=chair_range[random.randint(0, 10)]
-	print '----------------------------'
-	data.write("New Cube position : ["+str(x_aruco)+", "+str(y_aruco)+"]\n")
-	data.write("Obstacle position : ["+str(x_chair)+", "+str(y_chair)+"]\n")
-	print 'New Cube position : [%s, %s]' %(str(x_aruco), str(y_aruco))
-	print 'Obstacle position : [%s, %s]' %(str(x_chair), str(y_chair))
-	print '----------------------------'
+
 	aruco_object = ModelState()
 	aruco_object.model_name = 'aruco_cube'
 	aruco_object.pose.position.x = x_aruco
@@ -44,16 +39,20 @@ def mission_gen():
 	chair.reference_frame = 'world'
 	SetPose(aruco_object)
 	SetPose(chair)
-	dist = map(abs, [aruco_range_x[0]-x_aruco, aruco_range_y[i][0]-y_aruco, aruco_range_x[1]-x_aruco, aruco_range_y[i][1]-y_aruco])
-	data.write("Distance from table edge : "+str(min(dist))+"\n")
+	dist = map(abs, [aruco_range_x[0]-x_aruco, aruco_range_y[i][0]-y_aruco, aruco_range_x[1]-x_aruco, aruco_range_y[i][1]-y_aruco])	
+	print '---------------------------------'
+	data.write("New Cube position : ["+str(x_aruco)+", "+str(y_aruco)+"]\n")
+	data.write("Obstacle position : ["+str(x_chair)+", "+str(y_chair)+"], distance from table edge : "+str(min(dist))+"\n")
+	print 'New Cube position : [%s, %s], distance from table edge : %s' %(str(x_aruco), str(y_aruco), str(min(dist)))
+	print 'Obstacle position : [%s, %s]' %(str(x_chair), str(y_chair))
+	print '---------------------------------'
 	data.write("Initial position : "+str(amcl_init_pose)+"\n")
-	print 'Distance from table edge : %s' %str(min(dist))
-	print 'init_pose = %s' %str(amcl_init_pose)
+	rospy.loginfo ("Initial position : "+str(amcl_init_pose))
 	xr = {0: aruco_range_x[0]-0.38, 1: x_aruco, 2: aruco_range_x[1]+0.38, 3: x_aruco}.get(dist.index(min(dist)), 0)
 	yr = {0: y_aruco, 1: aruco_range_y[i][0]-0.38, 2: y_aruco, 3: aruco_range_y[i][1]+0.38}.get(dist.index(min(dist)), 0)
 	yawr = dist.index(min(dist))*pi/2
 	data.write("Robot pose goal (x, y, Y) : ("+str(xr)+", "+str(yr)+", "+str(yawr)+")\n")
-	rospy.loginfo("---------------------\nRobot pose goal (x, y, Y) generated : ("+str(xr)+", "+str(yr)+", "+str(yawr)+")\n")
+	rospy.loginfo("Robot pose goal (x, y, Y) generated : ("+str(xr)+", "+str(yr)+", "+str(yawr)+")\n")
 	data.close()
 	return (xr, yr, yawr)
 	
@@ -66,11 +65,13 @@ def GripperCallback(gripperdata):
 	global gripper_ok
 	gripper_ok = (gripperdata.actual.positions[0] + gripperdata.actual.positions[1]) > 0.04
 	
+	
 def RobotPoseCallback(posedata):
 	global xr, yr, yawr
 	xr = posedata.pose.pose.position.x
 	yr = posedata.pose.pose.position.y
 	yawr = (euler_from_quaternion([posedata.pose.pose.orientation.x, posedata.pose.pose.orientation.y, posedata.pose.pose.orientation.z, posedata.pose.pose.orientation.w]))[2]
+
 
 def robot_home(head_cmd):
 	client = actionlib.SimpleActionClient('/play_motion', PlayMotionAction) 
@@ -85,7 +86,7 @@ def robot_home(head_cmd):
 	state = client.get_state()
 	if state >= 1:
 		print 'Successful execution of action %s' %goal.motion_name
-	
+
 	rospy.loginfo("Moving head up")
 	jt = JointTrajectory()
 	jt.joint_names = ['head_1_joint', 'head_2_joint']
@@ -96,15 +97,15 @@ def robot_home(head_cmd):
 	head_cmd.publish(jt)
 	rospy.loginfo("Done.")
 
+
 def pose_tables ():
 	gazebo_model_states = rospy.wait_for_message('/gazebo/model_states', ModelStates)
 	pose_table = (gazebo_model_states.pose[gazebo_model_states.name.index('table')].position.x, gazebo_model_states.pose[gazebo_model_states.name.index('table')].position.y)
 	pose_table_0 = (gazebo_model_states.pose[gazebo_model_states.name.index('table_0')].position.x, gazebo_model_states.pose[gazebo_model_states.name.index('table_0')].position.y)
 	pose_table_1 = (gazebo_model_states.pose[gazebo_model_states.name.index('table_1')].position.x, gazebo_model_states.pose[gazebo_model_states.name.index('table_1')].position.y)
-	print 'table_ : %s' %str( pose_table)
-	print 'table_0 : %s' %str(pose_table_0)
-	print 'table_1 : %s' %str(pose_table_1)
 	return pose_table, pose_table_0, pose_table_1
+
+
 
 if __name__ == '__main__':
 	
@@ -119,11 +120,6 @@ if __name__ == '__main__':
 	########
 	head_cmd = rospy.Publisher('/head_controller/command', JointTrajectory, queue_size=1)
 
-	#InitialPosePublisher = rospy.Publisher('initialpose', PoseWithCovarianceStamped, queue_size = 100)
-	#for i in xrange(10):
-		#SendInitialPose(InitialPosePublisher, init_pose, rospy.Time.now())
-		#rospy.sleep(0.1)
-		#print('Initial pose set to %s.' %str(init_pose))
 	global amcl_init_pose
 	amcl_init_pose = init_pose()
 	pose_goal = mission_gen()
@@ -153,26 +149,37 @@ if __name__ == '__main__':
 		print 'Robot task: %s.' %(str(robot_task))
 		planner(robot_motion, amcl_init_pose, robot_action, robot_task)
 		try:
-			rospy.wait_for_message('/detected_aruco_pose', PoseStamped, timeout=1)
+			new_aruco_pose = rospy.wait_for_message('/detected_aruco_pose', PoseStamped, timeout=1)
+			if new_aruco_pose.header.frame_id == "old_base_footprint":
+				rospy.logwarn("Aruco cube not detected")
+				planner_ok = False
+			else:
+				new_aruco_pose.header.frame_id = "old_base_footprint"
 		except rospy.ROSException:
+			rospy.logwarn("Aruco cube not detected")
 			planner_ok = False
+
+			
 		data = open("../pick_test/"+str(rospy.get_param('test_name'))+".txt", "a")
 		print 'gripper_ok = %s, planner_ok = %s' %(str(gripper_ok), str(planner_ok))
+		
 		if planner_ok and gripper_ok:
 			data.write("GRASP SUCCESSFUL\n")
 			rospy.loginfo("GRASP SUCCESSFUL")
 		elif planner_ok and not gripper_ok:
 			data.write("GRASP FAIL : hand empty\n")
-			rospy.loginfo("GRASP FAIL : hand empty\n")
+			rospy.logerr("GRASP FAIL : hand empty\n")
 		else:
 			data.write("Aruco object not found. ABORTING\nRobot current position : ("+str(xr)+", "+str(yr)+", "+str(yawr)+")\n")
-			rospy.loginfo("Aruco object not found. ABORTING\nRobot current position : ("+str(xr)+", "+str(yr)+", "+str(yawr)+")\n")
+			rospy.logerr("Aruco object not found. ABORTING")
+			rospy.loginfo("Robot current position : ("+str(xr)+", "+str(yr)+", "+str(yawr)+")")
+			
 		data.write("----------------End test----------------\n")
 		data.close()
 		robot_home(head_cmd)
 		del regions[pose_goal]
+		rospy.loginfo("Mission finished\n==============================")
 	except rospy.ROSInterruptException:
-		rospy.loginfo("Interrupt: "+str(rospy.ROSInterruptException))
 		pass
 	rospy.set_param('robot_status', 'ready')
 	pose_table, pose_table_0, pose_table_1 = pose_tables()
@@ -181,6 +188,5 @@ if __name__ == '__main__':
 	print 'shift_table_1 : %s' %str(norm2(pose_init_table_1, pose_table_1))
 	if norm2(pose_init_table, pose_table) > 0.1 or norm2(pose_init_table_0, pose_table_0) > 0.1 or norm2(pose_init_table_1, pose_table_1) > 0.1:
 		rospy.set_param('simulation_status', 'need_restart')
-		print 'param simulation_status set to need_restart'
 		
 		
