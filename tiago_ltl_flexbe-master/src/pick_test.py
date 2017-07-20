@@ -4,7 +4,7 @@ from robot_fts import *
 from ltl_planner_motact_aruco import *
 from moveit_msgs.msg import PickupActionFeedback
 from control_msgs.msg import JointTrajectoryControllerState, FollowJointTrajectoryActionGoal
-from gazebo_msgs.msg import ModelState
+from gazebo_msgs.msg import ModelState, ModelStates
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 from geometry_msgs.msg import PoseWithCovarianceStamped
 from gazebo_msgs.srv import SetModelState
@@ -96,7 +96,15 @@ def robot_home(head_cmd):
 	head_cmd.publish(jt)
 	rospy.loginfo("Done.")
 
-
+def pose_tables ():
+	gazebo_model_states = rospy.wait_for_message('/gazebo/model_states', ModelStates)
+	pose_table = (gazebo_model_states.pose[gazebo_model_states.name.index('table')].position.x, gazebo_model_states.pose[gazebo_model_states.name.index('table')].position.y)
+	pose_table_0 = (gazebo_model_states.pose[gazebo_model_states.name.index('table_0')].position.x, gazebo_model_states.pose[gazebo_model_states.name.index('table_0')].position.y)
+	pose_table_1 = (gazebo_model_states.pose[gazebo_model_states.name.index('table_1')].position.x, gazebo_model_states.pose[gazebo_model_states.name.index('table_1')].position.y)
+	print 'table_ : %s' %str( pose_table)
+	print 'table_0 : %s' %str(pose_table_0)
+	print 'table_1 : %s' %str(pose_table_1)
+	return pose_table, pose_table_0, pose_table_1
 
 if __name__ == '__main__':
 	
@@ -107,6 +115,7 @@ if __name__ == '__main__':
 	rospy.Subscriber('pickup/feedback', PickupActionFeedback, GraspFeedbackCallback)
 	rospy.Subscriber('amcl_pose', PoseWithCovarianceStamped, RobotPoseCallback)
 	rospy.Subscriber('gripper_controller/state', JointTrajectoryControllerState, GripperCallback)
+	pose_init_table, pose_init_table_0, pose_init_table_1 = pose_tables()
 	########
 	head_cmd = rospy.Publisher('/head_controller/command', JointTrajectory, queue_size=1)
 
@@ -166,4 +175,12 @@ if __name__ == '__main__':
 		rospy.loginfo("Interrupt: "+str(rospy.ROSInterruptException))
 		pass
 	rospy.set_param('robot_status', 'ready')
-				
+	pose_table, pose_table_0, pose_table_1 = pose_tables()
+	print 'shift_table_ : %s' %str(norm2(pose_init_table, pose_table))
+	print 'shift_table_0 : %s' %str(norm2(pose_init_table_0, pose_table_0))
+	print 'shift_table_1 : %s' %str(norm2(pose_init_table_1, pose_table_1))
+	if norm2(pose_init_table, pose_table) > 0.1 or norm2(pose_init_table_0, pose_table_0) > 0.1 or norm2(pose_init_table_1, pose_table_1) > 0.1:
+		rospy.set_param('simulation_status', 'need_restart')
+		print 'param simulation_status set to need_restart'
+		
+		

@@ -110,7 +110,10 @@ def init_pose():
 		pass
 	xi = posedata.pose.pose.position.x
 	yi = posedata.pose.pose.position.y
-	yawi = (euler_from_quaternion([posedata.pose.pose.orientation.x, posedata.pose.pose.orientation.y, posedata.pose.pose.orientation.z, posedata.pose.pose.orientation.w]))[2]
+	yawi = (euler_from_quaternion([posedata.pose.pose.orientation.x, posedata.pose.pose.orientation.y, posedata.pose.pose.orientation.z, posedata.pose.pose.orientation.w]))[2]	
+	rospy.set_param('amcl_initial_pose_x', xi)
+	rospy.set_param('amcl_initial_pose_y', yi)
+	rospy.set_param('amcl_initial_pose_a', yawi)
 	return (xi, yi, yawi)
 	
 
@@ -126,11 +129,7 @@ def planner(ts, init_pose, act, robot_task, robot_name='TIAGo'):
     #----------
     #publish to
     #----------
-	#InitialPosePublisher = rospy.Publisher('initialpose', PoseWithCovarianceStamped, queue_size = 100)
-	#for i in xrange(10):
-		#SendInitialPose(InitialPosePublisher, init_pose, rospy.Time.now())
-		#rospy.sleep(0.1)
-	#print('Initial pose set to %s.' %str(init_pose))
+
 	GoalPublisher = actionlib.SimpleActionClient('move_base', move_base_msgs.msg.MoveBaseAction)
 	GoalPublisher.wait_for_server()
     ####### robot information

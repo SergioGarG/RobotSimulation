@@ -26,10 +26,7 @@ regions = {   #Small_office
               (1.54, -2.80, 0.00): set(['coke',]),
               #tabletop_cube
               (0.00, 0.00, 0.00): set(['aruco',]),
-              (-1.00, -1.00, 0.00): set(['test',]),
-              #test
-              #mission_pose: set(['sim',]),
-}
+              (-1.00, -1.00, 0.00): set(['test',]),}
 
 
 #init_pose = (0.0,0.0,0.0)
