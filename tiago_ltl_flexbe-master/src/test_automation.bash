@@ -6,13 +6,16 @@ export ROS_HOSTNAME=localhost
 export ROS_MASTER_URI=http://localhost:11311
 
 
-data_record='test2'
+
+data_record='test5'
 nb_test=$1
 cpt=0
-
-roslaunch tiago_ltl_flexbe pick_test.launch rviz:=false &
-sleep 10
-rosparam set simulation_status loading
+if ! pgrep -x rosmaster > /dev/null
+then
+	roslaunch tiago_ltl_flexbe pick_test.launch rviz:=true &
+	sleep 10
+	rosparam set simulation_status loading
+fi
 
 while [ "$cpt" -lt "$nb_test" ]
 do
@@ -27,17 +30,4 @@ do
 		sleep 1
 	done
 	let "cpt = cpt + 1"
-	if [ "$(rosparam get simulation_status)" = "need_restart" ] && [ "$cpt" != "$nb_test" ]
-	then
-		killall -9 roscore
-		killall -9 roslaunch
-		killall -9 rosmaster
-		killall -9 rosout
-		killall -9 gzserver
-		killall -9 gzclient
-		sleep 1
-		roslaunch tiago_ltl_flexbe pick_test.launch rviz:=false &
-		sleep 5
-		rosparam set simulation_status loading
-	fi
 done

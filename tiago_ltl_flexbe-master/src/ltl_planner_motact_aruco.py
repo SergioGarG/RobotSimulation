@@ -34,55 +34,60 @@ def norm2(pose1, pose2):
 def check_yaw(yaw_goal):
 	reach_yaw_bound = 0.15
 	VelPublisher = rospy.Publisher('mobile_base_controller/cmd_vel', Twist, queue_size = 10)
-	ang = Twist()
+	vel = Twist()
 	diff = yaw_goal-robot_pose[1][2]
 	while (abs(atan2(sin(diff),cos(diff))) > reach_yaw_bound):
 		diff = yaw_goal-robot_pose[1][2]
-		ang.angular.z = 0.5*copysign(1, atan2(sin(diff),cos(diff))) # return 1 or -1
-		VelPublisher.publish(ang)
+		vel.angular.z = 0.5*copysign(1, atan2(sin(diff),cos(diff))) # return 1 or -1
+		VelPublisher.publish(vel)
 		rospy.sleep(0.1)
-	ang.angular.z = 0
-	VelPublisher.publish(ang)
+	vel.angular.z = 0
+	VelPublisher.publish(vel)
 
 
 
-def PoseCallback(posedata, GoalPublisher):
-	global pose_goal
-	if not isinstance(pose_goal, str):
-		reach_xy_bound = 0.1
-		# PoseWithCovarianceStamped data from amcl_pose
-		global robot_pose # [time, [x,y,yaw]]
-		header = posedata.header
-		pose = posedata.pose
-		if (not robot_pose[0]) or (header.stamp > robot_pose[0]):
-			# more recent pose data received
-			robot_pose[0] = header.stamp
-			# TODO: maybe add covariance check here?
-			# print('robot position update!')
-			euler = euler_from_quaternion([pose.pose.orientation.x, pose.pose.orientation.y, pose.pose.orientation.z, pose.pose.orientation.w]) #roll, pitch, yaw
-			robot_pose[1] = [pose.pose.position.x, pose.pose.position.y, euler[2]] # in radians
-			#print 'robot_pose (pose.x, pose.y, euler[2]) :\n %s' %str(robot_pose[1])	
-			if ((norm2(robot_pose[1][0:2], pose_goal[0:2]) < reach_xy_bound) and (GoalPublisher.get_state() == 1)): # 1 = ACTIVE
-				GoalPublisher.cancel_goal()
+def PoseCallback(posedata):
+	# PoseWithCovarianceStamped data from amcl_pose
+	global robot_pose # [time, [x, y, yaw]]
+	header = posedata.header
+	pose = posedata.pose
+	if (not robot_pose[0]) or (header.stamp > robot_pose[0]):
+		# more recent pose data received
+		robot_pose[0] = header.stamp
+		# TODO: maybe add covariance check here?
+		# print('robot position update!')
+		euler = euler_from_quaternion([pose.pose.orientation.x, pose.pose.orientation.y, pose.pose.orientation.z, pose.pose.orientation.w]) #roll, pitch, yaw
+		robot_pose[1] = [pose.pose.position.x, pose.pose.position.y, euler[2]] # in radians
+
 	
 
 def SendGoal(goal , time_stamp, GoalPublisher):
-    # goal: [x, y, yaw]
-    GoalMsg = PoseStamped()
-    #GoalMsg.header.seq = 0
-    GoalMsg.header.stamp = time_stamp
-    GoalMsg.header.frame_id = 'map'
-    GoalMsg.pose.position.x = goal[0]
-    GoalMsg.pose.position.y = goal[1]
-    #GoalMsg.pose.position.z = 0.0
-    quaternion = quaternion_from_euler(0, 0, goal[2])
-    GoalMsg.pose.orientation.x = quaternion[0]
-    GoalMsg.pose.orientation.y = quaternion[1]
-    GoalMsg.pose.orientation.z = quaternion[2]
-    GoalMsg.pose.orientation.w = quaternion[3]
-    goal = move_base_msgs.msg.MoveBaseGoal(target_pose = GoalMsg)
-    GoalPublisher.send_goal(goal)
-
+	global robot_pose
+	pose_goal = goal
+	# goal: [x, y, yaw]
+	GoalMsg = PoseStamped()
+	#GoalMsg.header.seq = 0
+	GoalMsg.header.stamp = time_stamp
+	GoalMsg.header.frame_id = 'map'
+	GoalMsg.pose.position.x = goal[0]
+	GoalMsg.pose.position.y = goal[1]
+	#GoalMsg.pose.position.z = 0.0
+	quaternion = quaternion_from_euler(0, 0, goal[2])
+	GoalMsg.pose.orientation.x = quaternion[0]
+	GoalMsg.pose.orientation.y = quaternion[1]
+	GoalMsg.pose.orientation.z = quaternion[2]
+	GoalMsg.pose.orientation.w = quaternion[3]
+	goal = move_base_msgs.msg.MoveBaseGoal(target_pose = GoalMsg)
+	GoalPublisher.send_goal(goal)
+	while not GoalPublisher.get_state() == 1: # 1 = Active
+		rospy.Rate(5).sleep()
+	reach_xy_bound = 0.1
+	while (norm2(robot_pose[1][0:2], pose_goal[0:2]) > reach_xy_bound and (GoalPublisher.get_state() == 1)):
+		rospy.Rate(5).sleep()
+	print 'end while state = %s' %str(GoalPublisher.get_state())
+	if GoalPublisher.get_state() == 1:
+		GoalPublisher.cancel_goal()
+		check_yaw(pose_goal[2])
 
 
 def init_pose():
@@ -104,8 +109,7 @@ def init_pose():
 def planner(ts, init_pose, act, robot_task, robot_name='TIAGo'):
 	global robot_pose
 	robot_pose = [None, init_pose]
-	global pose_goal
-	pose_goal = init_pose
+	#global pose_goal
 	rospy.init_node('ltl_planner_%s' %robot_name)
 	print 'Robot %s: ltl_planner started!' %(robot_name)
     #----------
@@ -122,7 +126,7 @@ def planner(ts, init_pose, act, robot_task, robot_name='TIAGo'):
     #----------
     #subscribe to
     #----------
-	rospy.Subscriber('amcl_pose', PoseWithCovarianceStamped, PoseCallback, GoalPublisher)
+	
 	
 	t0 = rospy.Time.now()
 
@@ -155,17 +159,21 @@ def planner(ts, init_pose, act, robot_task, robot_name='TIAGo'):
 				planner.find_next_move()
 			else:
 				pose_goal = new_goal
+				rospy.Subscriber('amcl_pose', PoseWithCovarianceStamped, PoseCallback)
 				# move_base action server travels till (x,y) coordinates
-				SendGoal(pose_goal, t, GoalPublisher)
-				GoalPublisher.wait_for_result()
+				rospy.loginfo("Robot "+str(robot_name)+" moving to "+str(pose_goal))
+				SendGoal(pose_goal, rospy.Time.now()-t0, GoalPublisher)
 				# the check_yaw function sets the orientation 
-				rospy.loginfo("Start check_yaw")
-				check_yaw(pose_goal[2])
 				rospy.loginfo("Current robot position : "+str(robot_pose[1]))
 				data = open("../pick_test/"+str(rospy.get_param('test_name'))+".txt", "a")
-				data.write("Current robot position : "+str(robot_pose[1])+"\n")
+				if GoalPublisher.get_state() == 4:
+					rospy.logingo("Planning fail. Position not reached. Retrying...\n")
+					data.write("Planning fail. Position not reached. Retrying...\n")
+					SendGoal(pose_goal, rospy.Time.now()-t0, GoalPublisher)
+				else:
+					data.write("Current robot position : "+str(robot_pose[1])+"\n")
+					rospy.loginfo("Goal "+str(pose_goal)+" reached")
 				data.close()
-				rospy.loginfo("Goal "+str(pose_goal)+" reached")
 				planner.find_next_move()
 			if pose_goal == planner.next_move:
 				data = open("../pick_test/"+str(rospy.get_param('test_name'))+".txt", "a")

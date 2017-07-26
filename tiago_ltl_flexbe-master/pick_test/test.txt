@@ -709,3 +709,31 @@ Pick duration: 44.593
 Mission duration : 74.068
 GRASP FAIL : hand empty
 ----------------End test----------------
+
+----------------New test----------------
+2017-07-21 12:17:42.391486
+New Cube position : [-1.60399881743, -9.13263327512]
+Obstacle position : [0, -8], distance from table edge : 0.146001182572
+Initial position : (-0.5508167972705531, -8.258152815034029, -1.577719302035554)
+Robot pose goal (x, y, Y) : (-2.13, -9.13263327512, 0.0)
+Current robot position : [-2.129505033726918, -9.10333069869976, -0.14208513817243207]
+Time = 11.329: Pick server starting
+Time = 32.401: Pick server finished
+Pick duration: 21.072
+Mission duration : 32.43
+GRASP FAIL : hand empty
+----------------End test----------------
+
+----------------New test----------------
+2017-07-21 12:20:42.226005
+New Cube position : [-0.512347268813, -6.86835081861]
+Obstacle position : [1, -8], distance from table edge : 0.262347268813
+Initial position : (-2.1384393053669077, -9.099486184993689, 0.013412304561807187)
+Robot pose goal (x, y, Y) : (0.13, -6.86835081861, 3.14159265359)
+Current robot position : [0.12249891166776475, -6.890409056463706, 3.1040370383200866]
+Time = 18.135: Pick server starting
+Time = 68.03: Pick server finished
+Pick duration: 49.895
+Mission duration : 68.093
+GRASP FAIL : hand empty
+----------------End test----------------

@@ -2,7 +2,7 @@
 <launch>
   <arg name="robot"  	default="steel"/>
   <arg name="world"  	default="small_office"/>
-  <arg name="rviz"	 	default="true"/>
+  <arg name="rviz"	 	default="false"/>
   <arg name="aruco"	 	default="true"/>
   <arg name="obstacle" 	default="true"/>
   <arg name="gzpose" 	default="-x 0.0 -y 0.0 -z 0.0 -R 0.0 -P 0.0 -Y 0.0"/>
