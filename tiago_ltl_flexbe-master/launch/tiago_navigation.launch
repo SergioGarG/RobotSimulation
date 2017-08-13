@@ -82,9 +82,7 @@
   
   
     <group if="$(arg rviz)">
-<!--
       <node name="pick_demo_rviz" pkg="rviz" type="rviz" args="-d $(find tiago_pick_demo)/config/rviz/tiago_pick_demo.rviz" />
--->
 
       <node name="rviz" pkg="rviz" type="rviz" 
           args="-d $(find tiago_2dnav)/config/rviz/navigation$(arg sim_sufix).rviz"/>

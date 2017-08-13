@@ -7,6 +7,7 @@ def small_office():
 	
 	# Displaying the interface in the terminal
 	print('------------------------------\nSelect an action :')
+	print('0. Type')
 	print('1. r1		4. r4\n2. r2		5. r5\n3. r3		6. r6')
 	print('7. r4 -> r5  8. tuto\n9. sim')
 	print('q. Exit')
@@ -14,6 +15,7 @@ def small_office():
 	dest = raw_input()
 	# Returning the selected scenario
 	return {
+		'0': str(raw_input()),
         '1': '<>r1',
         '2': '<>r2',
         '3': '<>r3',

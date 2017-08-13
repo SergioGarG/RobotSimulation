@@ -6,14 +6,9 @@
   <arg name="aruco"	 	default="true"/>
   <arg name="obstacle" 	default="true"/>
   <arg name="gzpose" 	default="-x 0.0 -y 0.0 -z 0.0 -R 0.0 -P 0.0 -Y 0.0"/>
-<!--
-  <include file="$(find tiago_gazebo)/launch/tiago_gazebo.launch">
-	  <arg name="world"			 value="$(arg world)"/>
-      <arg name="robot"          value="$(arg robot)"/>
-      <arg name="public_sim"	 value="true"/>
-  </include>
--->
-  <param name="simulation_ready" value='False'/>
+
+
+  <param name="simulation_status" value='Loading'/>
   
   <include file="$(find tiago_ltl_flexbe)/launch/tiago_navigation_public.launch">
 	<arg name="robot"	value="$(arg robot)"/>

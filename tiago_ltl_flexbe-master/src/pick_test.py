@@ -23,14 +23,14 @@ def mission_gen():
 	set_object_pose('aruco_cube', ((x_aruco, y_aruco, 1.001), 0.0))
 	dist = map(abs, [aruco_range_x[0]-x_aruco, aruco_range_y[i][0]-y_aruco, aruco_range_x[1]-x_aruco, aruco_range_y[i][1]-y_aruco])	
 	print '---------------------------------'
-	data.write("New Cube position : ("+str(x_aruco)+", "+str(y_aruco)+")\n")
+	data.write("New Cube position : ("+str(x_aruco)+", "+str(y_aruco)+"), distance from table edge : "+str(min(dist))+"\n")
 	print 'New Cube position : (%s, %s), distance from table edge : %s' %(str(x_aruco), str(y_aruco), str(min(dist)))
 	
 	if 'dining_chair' in rospy.wait_for_message('/gazebo/model_states', ModelStates).name:
 		chair_range=[[1,n] for n in range(-9,-4)]+[[0, n] for n in range(-6, -4)]+ [[0,-8], [0,-10], [0,-12]]
 		(x_chair, y_chair) = chair_range[random.randint(0, 9)]
 		set_object_pose('dining_chair', ((x_chair, y_chair, 0.0), 0.0))
-		data.write("Obstacle position : ("+str(x_chair)+", "+str(y_chair)+"), distance from table edge : "+str(min(dist))+"\n")
+		data.write("Obstacle position : ("+str(x_chair)+", "+str(y_chair)+")\n")
 		print 'Obstacle position : (%s, %s)' %(str(x_chair), str(y_chair))
 
 	print '---------------------------------'
@@ -47,7 +47,7 @@ def mission_gen():
 
 def GraspFeedbackCallback(graspdata):
 	rospy.loginfo(graspdata.status.text)
-		
+
 
 def GripperCallback(gripperdata):
 	global gripper_ok
@@ -87,7 +87,7 @@ def robot_home():
 	SendGoal(pose_goal, rospy.Time.now(), GoalPublisher)
 	if GoalPublisher.get_state() == 4:
 		rospy.loginfo("Planning fail. Position home not reached. Retrying...\n")
-		SendGoal(pose_goal, rospy.Time.now()-t0, GoalPublisher)
+		SendGoal(pose_goal, rospy.Time.now(), GoalPublisher)
 	rospy.loginfo("Robot moved to home\nRobot current position : ("+str(xr)+", "+str(yr)+", "+str(yawr)+")")
 	data = open("../pick_test/"+str(rospy.get_param('test_name'))+".txt", "a")
 	data.write("Robot moved to home\nCurrent robot position : ("+str(xr)+", "+str(yr)+", "+str(yawr)+")\n")
@@ -96,7 +96,7 @@ def robot_home():
 	
 def pose_tables():
 	gazebo_model_states = rospy.wait_for_message('/gazebo/model_states', ModelStates)
-	pose_table = (gazebo_model_states.pose[gazebo_model_states.name.index('table')].position.x, gazebo_model_states.pose[gazebo_model_states.name.index('table')].position.y)
+	pose_table   = (gazebo_model_states.pose[gazebo_model_states.name.index('table')].position.x,   gazebo_model_states.pose[gazebo_model_states.name.index('table')].position.y)
 	pose_table_0 = (gazebo_model_states.pose[gazebo_model_states.name.index('table_0')].position.x, gazebo_model_states.pose[gazebo_model_states.name.index('table_0')].position.y)
 	pose_table_1 = (gazebo_model_states.pose[gazebo_model_states.name.index('table_1')].position.x, gazebo_model_states.pose[gazebo_model_states.name.index('table_1')].position.y)
 	return pose_table, pose_table_0, pose_table_1
@@ -122,10 +122,11 @@ def set_object_pose(name, pose):
 
 if __name__ == '__main__':
 	
+	
+	#########Node initialization
 	rospy.set_param('test_name', str(sys.argv[1]))
 	robot_name='TIAGo'
 	rospy.init_node('ltl_planner_%s' %robot_name)
-	print robot_name
     ########
 	rospy.Subscriber('pickup/feedback', PickupActionFeedback, GraspFeedbackCallback)
 	rospy.Subscriber('amcl_pose', PoseWithCovarianceStamped, RobotPoseCallback)
@@ -135,6 +136,8 @@ if __name__ == '__main__':
 	data = open("../pick_test/"+str(rospy.get_param('test_name'))+".txt", "a")
 	data.write("\n----------------New test----------------\n")
 	data.close()
+	
+	########Robot initialization
 	global amcl_init_pose
 	amcl_init_pose = init_pose()
 	pose_goal = mission_gen()
@@ -142,13 +145,13 @@ if __name__ == '__main__':
 	robot_motion = MotionFts(regions, ap, 'office' )
 	robot_motion.set_initial(amcl_init_pose)
 	robot_motion.add_full_edges(unit_cost = 0.1)
-	robot_model = [robot_motion, amcl_init_pose, robot_action]
+	#robot_model = [robot_motion, amcl_init_pose, robot_action]
 	client = actionlib.SimpleActionClient('/play_motion', PlayMotionAction) 
 	client.wait_for_server()
 	goal = PlayMotionGoal()
 	goal.motion_name = 'close_gripper'
 	goal.skip_planning = False
-	goal.priority = 0  # Optional
+	goal.priority = 0  # Optional	
 	print 'Sending actionlib goal with motion: %s' %str(goal.motion_name)
 	client.send_goal(goal)
 	print 'Waiting for result...'
@@ -157,7 +160,6 @@ if __name__ == '__main__':
 	#########
 	global gripper_ok
 	aruco_ok = True
-	world = rospy.get_param('world_name')
 	try:
 		rospy.loginfo("New mission")
 		robot_task = '<>(sim && pick)'

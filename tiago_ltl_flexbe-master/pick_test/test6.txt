@@ -1,0 +1,16 @@
+
+----------------New test----------------
+2017-08-13 10:49:49.529967
+New Cube position : (-1.53359597015, -7.18766225688), distance from table edge : 0.212337743116
+Obstacle position : (1, -9)
+Initial position : (-0.0003298790625660661, -0.002434764811625989, 0.0020793418635913713)
+Robot pose goal (x, y, Y) : (-1.53359597015, -7.78, 1.57079632679)
+Current robot position : [-1.5634090399936795, -7.772769525140042, 1.6972861559126189]
+Time = 27.165: Pick server starting
+Time = 64.252: Pick server finished
+Pick duration: 37.087
+Mission duration : 64.262
+GRASP FAIL : hand empty
+Robot moved to home
+Current robot position : (3.97220235098, -4.05292122139, 2.99015750481)
+----------------End test----------------

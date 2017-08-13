@@ -7,12 +7,12 @@ export ROS_MASTER_URI=http://localhost:11311
 
 
 
-data_record='test5'
+data_record='test6'
 nb_test=$1
 cpt=0
 if ! pgrep -x rosmaster > /dev/null
 then
-	roslaunch tiago_ltl_flexbe pick_test.launch rviz:=true &
+	roslaunch tiago_ltl_flexbe pick_test.launch rviz:=false &
 	sleep 10
 	rosparam set simulation_status loading
 fi

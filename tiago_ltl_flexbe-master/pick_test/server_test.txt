@@ -120,4 +120,4 @@ GRASP SUCCESSFUL
 ----------------End test----------------Time = 1.106. Pick server starting
 Aruco object not found. ABORTING
 Robot current position-1.29507434191, -7.88142718618, 1.29731622684)
-----------------End test----------------
+----------------End test----------------Stopped by user
